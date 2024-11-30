@@ -1,246 +1,277 @@
-// Liste de mots français
-const MOTS = [
-    "maison", "voiture", "ordinateur", "telephone", "chat", "chien", "livre",
-    "table", "chaise", "fenetre", "porte", "jardin", "cuisine", "chambre",
-    "ecole", "travail", "musique", "cinema", "restaurant", "voyage"
+const words = [
+    // Animaux
+    "CHAT", "CHIEN", "LION", "TIGRE", "ELEPHANT", "GIRAFE", "ZEBRE", "SINGE", "KANGOUROU", "RHINOCEROS",
+    "HIPPOPOTAME", "CROCODILE", "TORTUE", "PINGOUIN", "DAUPHIN", "BALEINE", "REQUIN", "LOUTRE", "PANDA",
+    "KOALA", "JAGUAR", "PANTHERE", "GAZELLE", "ANTILOPE", "CHAMEAU", "DROMADAIRE", "PERROQUET", "AIGLE",
+    "FAUCON", "HIBOU", "CHOUETTE", "COLIBRI", "FLAMANT", "PELICAN", "AUTRUCHE", "PAON", "CYGNE",
+
+    // Nature
+    "ARBRE", "FLEUR", "FORET", "MONTAGNE", "RIVIERE", "OCEAN", "PLAGE", "DESERT", "VOLCAN", "CASCADE",
+    "GLACIER", "PRAIRIE", "COLLINE", "VALLEE", "PLATEAU", "JUNGLE", "SAVANE", "OASIS", "GEYSER", "CANYON",
+    "GROTTE", "FALAISE", "DUNE", "LAGON", "RECIF", "ARCHIPEL", "FJORD", "DELTA", "MANGROVE",
+
+    // Fruits et Légumes
+    "POMME", "POIRE", "BANANE", "ORANGE", "CITRON", "FRAISE", "FRAMBOISE", "CERISE", "PECHE", "ABRICOT",
+    "RAISIN", "MANGUE", "ANANAS", "KIWI", "PASTEQUE", "MELON", "TOMATE", "CAROTTE", "POIREAU", "OIGNON",
+    "COURGETTE", "AUBERGINE", "BROCOLI", "CHOUFLEUR", "EPINARD", "HARICOT", "POTIRON", "CITROUILLE",
+
+    // Sports
+    "FOOTBALL", "TENNIS", "BASKETBALL", "VOLLEYBALL", "HANDBALL", "RUGBY", "HOCKEY", "NATATION", "ATHLETISME",
+    "GYMNASTIQUE", "CYCLISME", "ESCALADE", "PLONGEE", "EQUITATION", "JUDO", "KARATE", "BOXE", "ESCRIME",
+    "PATINAGE", "AVIRON", "VOILE", "SURF", "SKATEBOARD", "SNOWBOARD", "PETANQUE",
+
+    // Métiers
+    "MEDECIN", "PROFESSEUR", "AVOCAT", "ARCHITECTE", "INGENIEUR", "POMPIER", "POLICIER", "BOULANGER",
+    "CUISINIER", "MUSICIEN", "ARTISTE", "ECRIVAIN", "JOURNALISTE", "PHOTOGRAPHE", "PILOTE", "ASTRONAUTE",
+    "VETERINAIRE", "JARDINIER", "PLOMBIER", "ELECTRICIEN", "MENUISIER", "COIFFEUR", "FACTEUR",
+
+    // Vêtements
+    "PANTALON", "CHEMISE", "ROBE", "JUPE", "MANTEAU", "CHAPEAU", "ECHARPE", "GANTS", "CHAUSSETTES",
+    "CHAUSSURES", "BOTTES", "SANDALES", "CRAVATE", "CEINTURE", "PYJAMA", "MAILLOT", "IMPERMEABLE",
+
+    // Maison
+    "CUISINE", "SALON", "CHAMBRE", "BUREAU", "GARAGE", "JARDIN", "TERRASSE", "BALCON", "ESCALIER",
+    "FENETRE", "PLAFOND", "PLANCHER", "ARMOIRE", "CANAPE", "FAUTEUIL", "TABOURET", "COMMODE", "PLACARD",
+
+    // Transport
+    "VOITURE", "AVION", "TRAIN", "BATEAU", "HELICOPTERE", "TRAMWAY", "AUTOBUS", "METRO", "BICYCLETTE",
+    "MOTO", "CAMION", "TRACTEUR", "AMBULANCE", "TAXI", "FUSEE", "SOUCOUPE", "DIRIGEABLE",
+
+    // Technologie
+    "ORDINATEUR", "TELEPHONE", "TABLETTE", "TELEVISION", "INTERNET", "SATELLITE", "ROBOT", "DRONE",
+    "CONSOLE", "CAMERA", "APPAREIL", "IMPRIMANTE", "CLAVIER", "SOURIS", "ECRAN", "ENCEINTE",
+
+    // Instruments de musique
+    "PIANO", "GUITARE", "VIOLON", "BATTERIE", "TROMPETTE", "SAXOPHONE", "FLUTE", "HARPE", "ACCORDEON",
+    "CLARINETTE", "XYLOPHONE", "TAMBOUR", "TRIANGLE", "CYMBALE", "HARMONICA", "BANJO", "UKULELE",
+
+    // Éléments et Phénomènes naturels
+    "SOLEIL", "LUNE", "ETOILE", "PLANETE", "COMETE", "GALAXIE", "NUAGE", "ORAGE", "ECLAIR", "TONNERRE",
+    "PLUIE", "NEIGE", "BROUILLARD", "VENT", "TEMPETE", "OURAGAN", "TORNADE", "AVALANCHE", "SEISME",
+
+    // Aliments et Boissons
+    "CHOCOLAT", "GATEAU", "BISCUIT", "BONBON", "CROISSANT", "BAGUETTE", "FROMAGE", "YAOURT", "GLACE",
+    "CREPE", "PIZZA", "HAMBURGER", "SPAGHETTI", "SUSHI", "SALADE", "SOUPE", "SANDWICH", "OMELETTE",
+
+    // Émotions et Sentiments
+    "AMOUR", "JOIE", "BONHEUR", "TRISTESSE", "COLERE", "SURPRISE", "PEUR", "COURAGE", "ESPOIR",
+    "PASSION", "JALOUSIE", "TENDRESSE", "AMITIE", "CONFIANCE", "PATIENCE", "SAGESSE", "SERENITE",
+
+    // Objets du quotidien
+    "LUNETTES", "MONTRE", "PARAPLUIE", "PORTEFEUILLE", "VALISE", "MIROIR", "BROSSE", "PEIGNE",
+    "SERVIETTE", "COUSSIN", "COUVERTURE", "RIDEAU", "TAPIS", "CADRE", "HORLOGE", "REVEIL",
+
+    // Lieux et Bâtiments
+    "CHATEAU", "PALAIS", "MUSEE", "THEATRE", "CINEMA", "BIBLIOTHEQUE", "HOPITAL", "ECOLE", "UNIVERSITE",
+    "RESTAURANT", "BOUTIQUE", "SUPERMARCHE", "PHARMACIE", "BOULANGERIE", "PATISSERIE", "LIBRAIRIE",
+
+    // Art et Culture
+    "PEINTURE", "SCULPTURE", "POESIE", "ROMAN", "THEATRE", "DANSE", "CINEMA", "MUSIQUE", "OPERA",
+    "COMEDIE", "BALLET", "CIRQUE", "FESTIVAL", "CONCERT", "EXPOSITION", "SPECTACLE",
+
+    // Mots abstraits et concepts
+    "LIBERTE", "JUSTICE", "PAIX", "VERITE", "BEAUTE", "TEMPS", "ESPACE", "HISTOIRE", "AVENIR",
+    "SCIENCE", "NATURE", "CULTURE", "PROGRES", "SUCCES", "VICTOIRE", "MIRACLE", "MYSTERE"
 ];
 
-let currentWord = '';
-let guessedLetters = new Set();
-let remainingAttempts = 6;
-let gameOver = false;
+class HangmanGame {
+    constructor() {
+        this.canvas = document.getElementById('hangman');
+        this.ctx = this.canvas.getContext('2d');
+        this.wordDisplay = document.getElementById('word-display');
+        this.message = document.getElementById('message');
+        this.essaisRestants = document.getElementById('essais-restants');
+        this.newGameBtn = document.getElementById('new-game-btn');
+        this.keyboard = document.querySelectorAll('.keyboard button');
+        
+        this.maxAttempts = 6;
+        this.setupEventListeners();
+        this.startNewGame();
+    }
 
-function startNewGame() {
-    // Choisir un mot aléatoire
-    currentWord = MOTS[Math.floor(Math.random() * MOTS.length)];
-    
-    // Réinitialiser le jeu
-    guessedLetters.clear();
-    remainingAttempts = 6;
-    gameOver = false;
-    
-    // Mettre à jour l'affichage
-    document.getElementById('essais-restants').style.display = 'block';
-    updateDisplay();
-    resetButtons();
-    document.getElementById('message').textContent = '';
-    document.getElementById('attempts').textContent = remainingAttempts;
-    
-    // Réinitialiser le dessin du pendu
-    drawHangman();
-}
+    setupEventListeners() {
+        this.keyboard.forEach(button => {
+            button.addEventListener('click', () => this.guessLetter(button.textContent));
+        });
 
-function updateDisplay() {
-    const wordDisplay = document.getElementById('word-display');
-    if (gameOver) {
-        // Afficher le mot avec les lettres en couleur
-        wordDisplay.innerHTML = currentWord
+        this.newGameBtn.addEventListener('click', () => this.startNewGame());
+
+        document.addEventListener('keydown', (e) => {
+            if (/^[A-Z]$/i.test(e.key)) {
+                this.guessLetter(e.key.toUpperCase());
+            }
+        });
+    }
+
+    startNewGame() {
+        this.word = words[Math.floor(Math.random() * words.length)];
+        this.guessedLetters = new Set();
+        this.remainingAttempts = this.maxAttempts;
+        this.gameOver = false;
+
+        this.keyboard.forEach(button => {
+            button.disabled = false;
+            button.classList.remove('correct', 'wrong');
+        });
+
+        this.updateDisplay();
+        this.clearCanvas();
+        this.drawGallows();
+    }
+
+    updateDisplay() {
+        this.wordDisplay.innerHTML = this.word
             .split('')
-            .map(letter => {
-                const found = guessedLetters.has(letter);
-                return `<span class="${found ? 'found' : 'not-found'}">${letter}</span>`;
-            })
+            .map(letter => `<span class="${this.guessedLetters.has(letter) ? 'found' : ''}">${this.guessedLetters.has(letter) ? letter : '_'}</span>`)
             .join('');
-    } else {
-        // Affichage normal pendant le jeu
-        wordDisplay.innerHTML = currentWord
-            .split('')
-            .map(letter => guessedLetters.has(letter) ? letter : '_')
-            .join(' ');
-    }
-}
 
-function guessLetter(letter) {
-    if (gameOver || guessedLetters.has(letter.toLowerCase())) return;
-
-    letter = letter.toLowerCase();
-    guessedLetters.add(letter);
-
-    // Mise à jour du bouton
-    const buttons = document.querySelectorAll('.keyboard button');
-    buttons.forEach(button => {
-        if (button.textContent === letter.toUpperCase()) {
-            button.disabled = true;
-        }
-    });
-
-    // Vérifier si la lettre est dans le mot
-    if (!currentWord.includes(letter)) {
-        remainingAttempts--;
-        document.getElementById('attempts').textContent = remainingAttempts;
-        drawHangman();
-    }
-
-    updateDisplay();
-    checkGameStatus();
-}
-
-function checkGameStatus() {
-    const wordComplete = currentWord
-        .split('')
-        .every(letter => guessedLetters.has(letter));
-
-    if (wordComplete) {
-        gameOver = true;
-        document.getElementById('message').textContent = 'Félicitations ! Vous avez gagné !';
-        document.getElementById('message').style.color = '#34a853';
-        document.getElementById('essais-restants').style.display = 'none';
-    } else if (remainingAttempts <= 0) {
-        gameOver = true;
-        document.getElementById('message').textContent = 'Perdu !';
-        document.getElementById('message').style.color = '#d93025';
-        document.getElementById('essais-restants').style.display = 'none';
-    }
-    
-    updateDisplay();
-}
-
-function resetButtons() {
-    document.querySelectorAll('.keyboard button').forEach(button => {
-        button.disabled = false;
-    });
-}
-
-function drawHangman() {
-    const canvas = document.getElementById('hangmanCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    // Définir une taille plus grande pour le canvas
-    canvas.width = 300;
-    canvas.height = 350;
-    
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    // Style moderne
-    ctx.strokeStyle = '#4a5568';
-    ctx.lineWidth = 5;
-    ctx.lineCap = 'round';
-    ctx.lineJoin = 'round';
-
-    // Base avec une ombre
-    ctx.beginPath();
-    ctx.moveTo(50, 300);
-    ctx.lineTo(250, 300);
-    ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
-    ctx.shadowBlur = 15;
-    ctx.shadowOffsetY = 5;
-    ctx.stroke();
-    
-    // Réinitialiser l'ombre pour les autres éléments
-    ctx.shadowColor = 'transparent';
-    
-    // Poteau vertical avec gradient
-    const gradient = ctx.createLinearGradient(70, 300, 70, 50);
-    gradient.addColorStop(0, '#4a5568');
-    gradient.addColorStop(1, '#718096');
-    ctx.strokeStyle = gradient;
-    
-    ctx.beginPath();
-    ctx.moveTo(70, 300);
-    ctx.lineTo(70, 50);
-    ctx.stroke();
-
-    // Poteau horizontal
-    ctx.beginPath();
-    ctx.moveTo(70, 50);
-    ctx.lineTo(175, 50);
-    ctx.stroke();
-
-    // Corde avec style différent
-    ctx.strokeStyle = '#805ad5';
-    ctx.lineWidth = 3;
-    ctx.beginPath();
-    ctx.moveTo(175, 50);
-    ctx.lineTo(175, 80);
-    ctx.stroke();
-
-    const maxAttempts = 6;
-    const partsToShow = maxAttempts - remainingAttempts;
-
-    // Style pour le personnage
-    ctx.strokeStyle = '#2d3748';
-    ctx.lineWidth = 4;
-
-    // Tête
-    if (partsToShow >= 1) {
-        ctx.beginPath();
-        ctx.arc(175, 110, 30, 0, Math.PI * 2);
-        // Visage stylisé
-        if (partsToShow === 6) { // Uniquement quand perdu
-            // Yeux X
-            ctx.moveTo(165, 100);
-            ctx.lineTo(175, 110);
-            ctx.moveTo(175, 100);
-            ctx.lineTo(165, 110);
-            
-            ctx.moveTo(185, 100);
-            ctx.lineTo(195, 110);
-            ctx.moveTo(195, 100);
-            ctx.lineTo(185, 110);
-            
-            // Bouche triste
-            ctx.moveTo(165, 125);
-            ctx.quadraticCurveTo(175, 115, 185, 125);
+        this.essaisRestants.textContent = `Essais restants: ${this.remainingAttempts}`;
+        
+        if (this.gameOver) {
+            if (this.hasWon()) {
+                this.message.textContent = '🎉 Félicitations ! Vous avez gagné !';
+                this.message.style.color = 'var(--success-color)';
+            } else {
+                this.message.textContent = `💔 Perdu ! Le mot était : ${this.word}`;
+                this.message.style.color = 'var(--error-color)';
+            }
         } else {
-            // Yeux normaux
-            ctx.moveTo(165, 105);
-            ctx.lineTo(175, 105);
-            ctx.moveTo(185, 105);
-            ctx.lineTo(195, 105);
-            
-            // Bouche neutre
-            ctx.moveTo(170, 120);
-            ctx.lineTo(180, 120);
+            this.message.textContent = '';
         }
-        ctx.stroke();
     }
 
-    // Corps avec courbe légère
-    if (partsToShow >= 2) {
-        ctx.beginPath();
-        ctx.moveTo(175, 140);
-        ctx.quadraticCurveTo(175, 180, 175, 220);
-        ctx.stroke();
+    guessLetter(letter) {
+        if (this.gameOver || this.guessedLetters.has(letter)) return;
+
+        this.guessedLetters.add(letter);
+        const button = Array.from(this.keyboard).find(btn => btn.textContent === letter);
+
+        if (this.word.includes(letter)) {
+            if (button) button.classList.add('correct');
+        } else {
+            if (button) button.classList.add('wrong');
+            this.remainingAttempts--;
+            this.drawHangman(this.maxAttempts - this.remainingAttempts);
+        }
+
+        if (button) button.disabled = true;
+
+        this.checkGameEnd();
+        this.updateDisplay();
     }
 
-    // Bras avec courbes naturelles
-    if (partsToShow >= 3) {
-        ctx.beginPath();
-        ctx.moveTo(175, 160);
-        ctx.quadraticCurveTo(145, 170, 135, 200);
-        ctx.stroke();
+    hasWon() {
+        return this.word.split('').every(letter => this.guessedLetters.has(letter));
     }
 
-    if (partsToShow >= 4) {
-        ctx.beginPath();
-        ctx.moveTo(175, 160);
-        ctx.quadraticCurveTo(205, 170, 215, 200);
-        ctx.stroke();
+    checkGameEnd() {
+        if (this.hasWon() || this.remainingAttempts === 0) {
+            this.gameOver = true;
+            this.keyboard.forEach(button => button.disabled = true);
+        }
     }
 
-    // Jambes avec courbes naturelles
-    if (partsToShow >= 5) {
-        ctx.beginPath();
-        ctx.moveTo(175, 220);
-        ctx.quadraticCurveTo(145, 250, 135, 280);
-        ctx.stroke();
+    clearCanvas() {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     }
 
-    if (partsToShow >= 6) {
-        ctx.beginPath();
-        ctx.moveTo(175, 220);
-        ctx.quadraticCurveTo(205, 250, 215, 280);
-        ctx.stroke();
+    drawGallows() {
+        this.ctx.strokeStyle = '#1e293b';
+        this.ctx.lineWidth = 4;
+        this.ctx.beginPath();
+
+        // Base
+        this.ctx.moveTo(50, 250);
+        this.ctx.lineTo(250, 250);
+
+        // Poteau vertical
+        this.ctx.moveTo(100, 250);
+        this.ctx.lineTo(100, 50);
+
+        // Poutre horizontale
+        this.ctx.moveTo(100, 50);
+        this.ctx.lineTo(200, 50);
+
+        // Corde
+        this.ctx.moveTo(200, 50);
+        this.ctx.lineTo(200, 80);
+
+        this.ctx.stroke();
+    }
+
+    drawHangman(step) {
+        this.ctx.strokeStyle = '#1e293b';
+        this.ctx.lineWidth = 4;
+        this.ctx.lineCap = 'round';
+
+        switch(step) {
+            case 1: // Tête
+                this.ctx.beginPath();
+                this.ctx.arc(200, 100, 20, 0, Math.PI * 2);
+                this.ctx.stroke();
+                break;
+            
+            case 2: // Corps
+                this.ctx.beginPath();
+                this.ctx.moveTo(200, 120);
+                this.ctx.lineTo(200, 180);
+                this.ctx.stroke();
+                break;
+            
+            case 3: // Bras gauche
+                this.ctx.beginPath();
+                this.ctx.moveTo(200, 140);
+                this.ctx.lineTo(170, 160);
+                this.ctx.stroke();
+                break;
+            
+            case 4: // Bras droit
+                this.ctx.beginPath();
+                this.ctx.moveTo(200, 140);
+                this.ctx.lineTo(230, 160);
+                this.ctx.stroke();
+                break;
+            
+            case 5: // Jambe gauche
+                this.ctx.beginPath();
+                this.ctx.moveTo(200, 180);
+                this.ctx.lineTo(170, 210);
+                this.ctx.stroke();
+                break;
+            
+            case 6: // Jambe droite
+                this.ctx.beginPath();
+                this.ctx.moveTo(200, 180);
+                this.ctx.lineTo(230, 210);
+                this.ctx.stroke();
+
+                // Visage triste
+                this.ctx.beginPath();
+                this.ctx.arc(200, 100, 20, 0, Math.PI * 2);
+                this.ctx.stroke();
+                
+                // Yeux X
+                this.ctx.beginPath();
+                this.ctx.moveTo(190, 95);
+                this.ctx.lineTo(195, 100);
+                this.ctx.moveTo(195, 95);
+                this.ctx.lineTo(190, 100);
+                
+                this.ctx.moveTo(205, 95);
+                this.ctx.lineTo(210, 100);
+                this.ctx.moveTo(210, 95);
+                this.ctx.lineTo(205, 100);
+                
+                // Bouche triste
+                this.ctx.beginPath();
+                this.ctx.arc(200, 110, 8, Math.PI * 0.1, Math.PI * 0.9, true);
+                this.ctx.stroke();
+                break;
+        }
     }
 }
 
-// Ajouter la prise en charge du clavier physique
-document.addEventListener('keydown', function(event) {
-    const key = event.key.toUpperCase();
-    if (/^[A-Z]$/.test(key)) {
-        guessLetter(key);
-    }
+// Démarrer le jeu
+document.addEventListener('DOMContentLoaded', () => {
+    new HangmanGame();
 });
-
-// Démarrer une nouvelle partie au chargement
-window.onload = startNewGame;
