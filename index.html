@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeu du Pendu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Le Jeu du Pendu</h1>
+        
+        <div class="game-container">
+            <div class="hangman-drawing">
+                <canvas id="hangmanCanvas" width="200" height="250"></canvas>
+            </div>
+
+            <div class="word-container">
+                <div id="word-display"></div>
+                <div id="message"></div>
+                <div id="essais-restants">Essais restants: <span id="attempts">6</span></div>
+            </div>
+
+            <div class="keyboard">
+                <div class="keyboard-row">
+                    <button onclick="guessLetter('A')">A</button>
+                    <button onclick="guessLetter('B')">B</button>
+                    <button onclick="guessLetter('C')">C</button>
+                    <button onclick="guessLetter('D')">D</button>
+                    <button onclick="guessLetter('E')">E</button>
+                    <button onclick="guessLetter('F')">F</button>
+                    <button onclick="guessLetter('G')">G</button>
+                </div>
+                <div class="keyboard-row">
+                    <button onclick="guessLetter('H')">H</button>
+                    <button onclick="guessLetter('I')">I</button>
+                    <button onclick="guessLetter('J')">J</button>
+                    <button onclick="guessLetter('K')">K</button>
+                    <button onclick="guessLetter('L')">L</button>
+                    <button onclick="guessLetter('M')">M</button>
+                    <button onclick="guessLetter('N')">N</button>
+                </div>
+                <div class="keyboard-row">
+                    <button onclick="guessLetter('O')">O</button>
+                    <button onclick="guessLetter('P')">P</button>
+                    <button onclick="guessLetter('Q')">Q</button>
+                    <button onclick="guessLetter('R')">R</button>
+                    <button onclick="guessLetter('S')">S</button>
+                    <button onclick="guessLetter('T')">T</button>
+                    <button onclick="guessLetter('U')">U</button>
+                </div>
+                <div class="keyboard-row">
+                    <button onclick="guessLetter('V')">V</button>
+                    <button onclick="guessLetter('W')">W</button>
+                    <button onclick="guessLetter('X')">X</button>
+                    <button onclick="guessLetter('Y')">Y</button>
+                    <button onclick="guessLetter('Z')">Z</button>
+                </div>
+            </div>
+
+            <button id="new-game-btn" onclick="startNewGame()">Nouvelle Partie</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
