@@ -1,24 +1,33 @@
 # Le Pendu - Jeu de Mots Français
 
-Un jeu du pendu moderne et interactif avec une vaste collection de mots français.
+Un jeu du pendu moderne et interactif avec une vaste collection de mots français. Testez votre vocabulaire et votre perspicacité dans ce jeu classique revisité !
+
+🎮 [Jouer au Pendu](https://rekiiel.github.io/Pendu/)
 
 ## Fonctionnalités
 
-- Interface utilisateur moderne et responsive
-- Mode sombre / Mode clair
-- Clavier virtuel et support clavier physique
-- Animation du pendu en canvas
-- Trois niveaux de difficulté
-- Plus de 800 mots dans diverses catégories
+- 🎨 Interface utilisateur moderne et responsive
+- 🌓 Mode sombre / Mode clair
+- ⌨️ Clavier virtuel et support clavier physique
+- 🎭 Animation du pendu en canvas
+- 🎯 Trois niveaux de difficulté
+- 📚 Plus de 800 mots dans diverses catégories
+
+## Comment Jouer
+
+1. Choisissez votre niveau de difficulté
+2. Sélectionnez une catégorie de mots
+3. Devinez le mot en proposant des lettres
+4. Vous avez 6 essais avant que le pendu ne soit complet
 
 ## Catégories de Mots
 
-1. **Animaux** - De la faune domestique aux espèces exotiques
-2. **Fruits et Légumes** - Une variété de produits du potager
-3. **Vêtements et Accessoires** - Mode et habillement
-4. **Maison et Mobilier** - Objets du quotidien
-5. **Transports** - Moyens de locomotion variés
-6. **Métiers** - Professions traditionnelles et modernes
+1. 🦁 **Animaux** - De la faune domestique aux espèces exotiques
+2. 🥕 **Fruits et Légumes** - Une variété de produits du potager
+3. 👕 **Vêtements et Accessoires** - Mode et habillement
+4. 🏠 **Maison et Mobilier** - Objets du quotidien
+5. 🚗 **Transports** - Moyens de locomotion variés
+6. 👨‍💼 **Métiers** - Professions traditionnelles et modernes
 7. **Loisirs et Sports** - Activités récréatives
 8. **Nature et Environnement** - Éléments naturels
 9. **Météo et Astronomie** - Phénomènes célestes et climatiques
@@ -49,38 +58,28 @@ Un jeu du pendu moderne et interactif avec une vaste collection de mots françai
 34. **Art Numérique** - Création digitale
 35. **Cosmétique et Bien-être** - Soins et relaxation
 
-## Comment Jouer
-
-1. Choisissez votre niveau de difficulté
-2. Devinez les lettres du mot caché
-3. Vous avez un nombre limité d'essais selon le niveau :
-   - Facile : 8 essais
-   - Normal : 6 essais
-   - Difficile : 4 essais
-
 ## Technologies Utilisées
 
 - HTML5
-- CSS3 avec variables pour le thème sombre/clair
-- JavaScript moderne (ES6+)
-- Canvas pour les animations
-- Responsive Design
-- Modules ES6
+- CSS3 avec animations modernes
+- JavaScript vanilla
+- Canvas pour les animations du pendu
 
-## Installation
+## Fonctionnalités Spéciales
+
+- Sauvegarde automatique de vos préférences (mode sombre/clair)
+- Animations fluides et réactives
+- Design responsive pour tous les appareils
+- Sons et effets visuels pour une expérience immersive
+
+## Développement Local
 
 1. Clonez le repository
-2. Ouvrez index.html dans votre navigateur
-3. Ou visitez la version en ligne sur GitHub Pages
+```bash
+git clone https://github.com/Rekiiel/Pendu.git
+```
+2. Ouvrez `index.html` dans votre navigateur
 
 ## Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-- Suggérer de nouveaux mots
-- Proposer des améliorations
-- Signaler des bugs
-- Améliorer le code
-
-## Licence
-
-MIT License - Libre d'utilisation et de modification
+Les contributions sont les bienvenues ! N'hésitez pas à ouvrir une issue ou à proposer une pull request.
