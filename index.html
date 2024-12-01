@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Le Pendu</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+</head>
+<body>
+    <div class="settings-container">
+        <button id="settings-btn" aria-label="Paramètres">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="settings-menu" id="settings-menu" style="display: none;">
+            <div class="settings-item">
+                <label class="switch-label">Mode Sombre</label>
+                <label class="switch">
+                    <input type="checkbox" id="darkmode-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="settings-item">
+                <label class="switch-label">Difficulté</label>
+                <select id="difficulty-select" class="difficulty-select">
+                    <option value="kids">Enfant</option>
+                    <option value="easy">Facile</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="hard">Difficile</option>
+                </select>
+            </div>
+            <div class="settings-item">
+                <button id="reset-stats-btn" class="reset-stats-btn">
+                    <i class="fas fa-trash-alt"></i>
+                    Réinitialiser les statistiques
+                </button>
+            </div>
+        </div>
+    </div>
+    <div class="stats-container">
+        <h3>Statistiques</h3>
+        <div class="difficulty-tabs">
+            <button class="tab-btn" data-difficulty="kids">Enfant</button>
+            <button class="tab-btn" data-difficulty="easy">Facile</button>
+            <button class="tab-btn active" data-difficulty="normal">Normal</button>
+            <button class="tab-btn" data-difficulty="hard">Difficile</button>
+        </div>
+        <div class="stats-content">
+            <div class="stat-item">
+                <span class="stat-label">Parties jouées:</span>
+                <span class="stat-value" id="games-played">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Victoires:</span>
+                <span class="stat-value" id="games-won">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">% de victoires:</span>
+                <span class="stat-value" id="win-percentage">0%</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Série actuelle:</span>
+                <span class="stat-value" id="current-streak">0</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Meilleure série:</span>
+                <span class="stat-value" id="best-streak">0</span>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <h1>LE PENDU</h1>
+        <div class="game-container">
+            <div class="hangman-drawing">
+                <canvas id="hangman" width="300" height="300"></canvas>
+            </div>
+            <div id="essais-restants"></div>
+            <div class="word-container">
+                <div id="category-display" class="category-display"></div>
+                <div id="word-display"></div>
+                <div id="message"></div>
+            </div>
+            <div class="keyboard">
+                <div class="keyboard-row">
+                    <button>A</button><button>Z</button><button>E</button><button>R</button>
+                    <button>T</button><button>Y</button><button>U</button><button>I</button>
+                    <button>O</button><button>P</button>
+                </div>
+                <div class="keyboard-row">
+                    <button>Q</button><button>S</button><button>D</button><button>F</button>
+                    <button>G</button><button>H</button><button>J</button><button>K</button>
+                    <button>L</button><button>M</button>
+                </div>
+                <div class="keyboard-row">
+                    <button>W</button><button>X</button><button>C</button><button>V</button>
+                    <button>B</button><button>N</button>
+                </div>
+            </div>
+            <button id="new-game-btn">Nouvelle Partie</button>
+        </div>
+    </div>
+    <script src="script.js" type="module"></script>
+</body>
+</html>
