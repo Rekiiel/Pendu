@@ -8,6 +8,12 @@
     --card-bg: rgba(255, 255, 255, 0.9);
 }
 
+[data-theme="dark"] {
+    --text-color: #f8fafc;
+    --bg-color: #1e293b;
+    --card-bg: rgba(30, 41, 59, 0.9);
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -17,20 +23,21 @@
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px;
+    padding: 5px;
     color: var(--text-color);
+    overflow: hidden;
 }
 
 .container {
     max-width: 900px;
-    width: 95%;
+    width: 98%;
     background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 24px;
+    padding: 0.8rem;
+    border-radius: 20px;
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(10px);
     animation: fadeIn 0.5s ease-out;
@@ -50,13 +57,13 @@ body {
 h1 {
     text-align: center;
     color: var(--primary-color);
-    margin-bottom: 2rem;
-    font-size: 2.8em;
+    margin-bottom: 0.8rem;
+    font-size: 2em;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 2px;
     position: relative;
-    padding-bottom: 1rem;
+    padding-bottom: 0.4rem;
 }
 
 h1::after {
@@ -75,16 +82,16 @@ h1::after {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 2rem;
+    gap: 0.8rem;
 }
 
 .hangman-drawing {
     background: white;
-    padding: 2rem;
-    border-radius: 20px;
+    padding: 0.8rem;
+    border-radius: 15px;
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    margin: 1rem 0;
+    margin: 0.5rem 0;
+    transform: scale(0.95);
 }
 
 .hangman-drawing:hover {
@@ -94,19 +101,19 @@ h1::after {
 
 .word-container {
     text-align: center;
-    margin: 2rem 0;
-    padding: 1rem;
+    margin: 0.5rem 0;
+    padding: 0.3rem;
     width: 100%;
     max-width: 600px;
 }
 
 #word-display {
-    font-size: 3em;
-    letter-spacing: 15px;
-    margin-bottom: 1.5rem;
+    font-size: 2.8em;
+    letter-spacing: 12px;
+    margin-bottom: 1rem;
     font-weight: 600;
     color: var(--text-color);
-    min-height: 80px;
+    min-height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,40 +151,40 @@ h1::after {
 }
 
 #message {
-    margin: 1rem 0;
+    margin: 0.5rem 0;
     font-weight: 600;
-    font-size: 1.4em;
-    min-height: 30px;
+    font-size: 1.2em;
+    min-height: 20px;
     transition: all 0.3s ease;
     text-align: center;
 }
 
 .keyboard {
     display: flex;
-    flex-direction: column;
-    gap: 8px;
-    margin: 1.5rem 0;
-    width: 100%;
-    max-width: 600px;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+    transform: scale(0.95);
 }
 
 .keyboard-row {
     display: flex;
     justify-content: center;
-    gap: 8px;
+    gap: 0.3rem;
 }
 
 button {
-    padding: 15px 20px;
-    font-size: 1.2em;
+    padding: 10px 15px;
+    font-size: 1em;
     border: none;
-    border-radius: 12px;
+    border-radius: 10px;
     background: linear-gradient(145deg, var(--primary-color), var(--secondary-color));
     color: white;
     cursor: pointer;
     transition: all 0.3s ease;
     font-weight: 600;
-    min-width: 50px;
+    min-width: 30px;
     position: relative;
     overflow: hidden;
 }
@@ -214,11 +221,11 @@ button:disabled {
 }
 
 #new-game-btn {
-    padding: 18px 36px;
-    font-size: 1.4em;
+    padding: 12px 28px;
+    font-size: 1.2em;
     background: linear-gradient(145deg, var(--success-color), #16a34a);
-    border-radius: 15px;
-    margin-top: 2rem;
+    border-radius: 12px;
+    margin-top: 1.2rem;
     letter-spacing: 1px;
 }
 
@@ -228,9 +235,9 @@ button:disabled {
 }
 
 #essais-restants {
-    font-size: 1.3em;
+    font-size: 1.2em;
     color: var(--error-color);
-    margin: 1rem 0;
+    margin: 0.8rem 0;
     font-weight: 600;
     display: flex;
     align-items: center;
@@ -249,35 +256,140 @@ button:disabled {
     }
 }
 
+.settings-container {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 1000;
+}
+
+#settings-btn {
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: var(--primary-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: transform 0.3s ease;
+    z-index: 1001;
+}
+
+#settings-btn:hover {
+    transform: rotate(90deg);
+}
+
+.settings-menu {
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 0;
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 1rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    min-width: 200px;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.settings-menu.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    pointer-events: none;
+}
+
+.settings-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    color: var(--text-color);
+}
+
+/* Switch toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
 @media (max-width: 768px) {
     .container {
-        padding: 1rem;
+        padding: 0.5rem;
     }
 
     h1 {
-        font-size: 2em;
+        font-size: 1.5em;
     }
 
     #word-display {
-        font-size: 2em;
-        letter-spacing: 10px;
+        font-size: 1.8em;
+        letter-spacing: 8px;
     }
 
     button {
-        padding: 12px 15px;
-        font-size: 1em;
-        min-width: 40px;
+        padding: 8px 12px;
+        font-size: 0.9em;
+        min-width: 25px;
     }
 
     #new-game-btn {
-        padding: 15px 30px;
-        font-size: 1.2em;
+        padding: 10px 20px;
+        font-size: 1em;
     }
 }
 
 canvas {
     border: none;
-    border-radius: 15px;
+    border-radius: 10px;
     background-color: white;
     display: block;
     max-width: 100%;

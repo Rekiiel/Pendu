@@ -84,9 +84,50 @@ class HangmanGame {
         this.newGameBtn = document.getElementById('new-game-btn');
         this.keyboard = document.querySelectorAll('.keyboard button');
         
+        // Initialisation des éléments de paramètres
+        this.initializeSettings();
+        
         this.maxAttempts = 6;
         this.setupEventListeners();
         this.startNewGame();
+    }
+
+    initializeSettings() {
+        this.settingsBtn = document.getElementById('settings-btn');
+        this.settingsMenu = document.querySelector('.settings-menu');
+        this.darkModeToggle = document.getElementById('darkmode-toggle');
+
+        if (this.settingsBtn) {
+            this.settingsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                this.settingsMenu.classList.toggle('hidden');
+            });
+        }
+
+        document.addEventListener('click', (e) => {
+            if (this.settingsMenu && !this.settingsMenu.contains(e.target) && !this.settingsBtn.contains(e.target)) {
+                this.settingsMenu.classList.add('hidden');
+            }
+        });
+
+        if (this.darkModeToggle) {
+            this.darkModeToggle.addEventListener('change', () => {
+                if (this.darkModeToggle.checked) {
+                    document.documentElement.setAttribute('data-theme', 'dark');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.documentElement.removeAttribute('data-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+
+            // Charger le thème sauvegardé
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                this.darkModeToggle.checked = true;
+                document.documentElement.setAttribute('data-theme', 'dark');
+            }
+        }
     }
 
     setupEventListeners() {
