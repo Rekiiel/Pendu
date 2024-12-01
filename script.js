@@ -1,78 +1,7 @@
-const words = [
-    // Animaux
-    "CHAT", "CHIEN", "LION", "TIGRE", "ELEPHANT", "GIRAFE", "ZEBRE", "SINGE", "KANGOUROU", "RHINOCEROS",
-    "HIPPOPOTAME", "CROCODILE", "TORTUE", "PINGOUIN", "DAUPHIN", "BALEINE", "REQUIN", "LOUTRE", "PANDA",
-    "KOALA", "JAGUAR", "PANTHERE", "GAZELLE", "ANTILOPE", "CHAMEAU", "DROMADAIRE", "PERROQUET", "AIGLE",
-    "FAUCON", "HIBOU", "CHOUETTE", "COLIBRI", "FLAMANT", "PELICAN", "AUTRUCHE", "PAON", "CYGNE",
+import words from './words.js';
 
-    // Nature
-    "ARBRE", "FLEUR", "FORET", "MONTAGNE", "RIVIERE", "OCEAN", "PLAGE", "DESERT", "VOLCAN", "CASCADE",
-    "GLACIER", "PRAIRIE", "COLLINE", "VALLEE", "PLATEAU", "JUNGLE", "SAVANE", "OASIS", "GEYSER", "CANYON",
-    "GROTTE", "FALAISE", "DUNE", "LAGON", "RECIF", "ARCHIPEL", "FJORD", "DELTA", "MANGROVE",
-
-    // Fruits et Légumes
-    "POMME", "POIRE", "BANANE", "ORANGE", "CITRON", "FRAISE", "FRAMBOISE", "CERISE", "PECHE", "ABRICOT",
-    "RAISIN", "MANGUE", "ANANAS", "KIWI", "PASTEQUE", "MELON", "TOMATE", "CAROTTE", "POIREAU", "OIGNON",
-    "COURGETTE", "AUBERGINE", "BROCOLI", "CHOUFLEUR", "EPINARD", "HARICOT", "POTIRON", "CITROUILLE",
-
-    // Sports
-    "FOOTBALL", "TENNIS", "BASKETBALL", "VOLLEYBALL", "HANDBALL", "RUGBY", "HOCKEY", "NATATION", "ATHLETISME",
-    "GYMNASTIQUE", "CYCLISME", "ESCALADE", "PLONGEE", "EQUITATION", "JUDO", "KARATE", "BOXE", "ESCRIME",
-    "PATINAGE", "AVIRON", "VOILE", "SURF", "SKATEBOARD", "SNOWBOARD", "PETANQUE",
-
-    // Métiers
-    "MEDECIN", "PROFESSEUR", "AVOCAT", "ARCHITECTE", "INGENIEUR", "POMPIER", "POLICIER", "BOULANGER",
-    "CUISINIER", "MUSICIEN", "ARTISTE", "ECRIVAIN", "JOURNALISTE", "PHOTOGRAPHE", "PILOTE", "ASTRONAUTE",
-    "VETERINAIRE", "JARDINIER", "PLOMBIER", "ELECTRICIEN", "MENUISIER", "COIFFEUR", "FACTEUR",
-
-    // Vêtements
-    "PANTALON", "CHEMISE", "ROBE", "JUPE", "MANTEAU", "CHAPEAU", "ECHARPE", "GANTS", "CHAUSSETTES",
-    "CHAUSSURES", "BOTTES", "SANDALES", "CRAVATE", "CEINTURE", "PYJAMA", "MAILLOT", "IMPERMEABLE",
-
-    // Maison
-    "CUISINE", "SALON", "CHAMBRE", "BUREAU", "GARAGE", "JARDIN", "TERRASSE", "BALCON", "ESCALIER",
-    "FENETRE", "PLAFOND", "PLANCHER", "ARMOIRE", "CANAPE", "FAUTEUIL", "TABOURET", "COMMODE", "PLACARD",
-
-    // Transport
-    "VOITURE", "AVION", "TRAIN", "BATEAU", "HELICOPTERE", "TRAMWAY", "AUTOBUS", "METRO", "BICYCLETTE",
-    "MOTO", "CAMION", "TRACTEUR", "AMBULANCE", "TAXI", "FUSEE", "SOUCOUPE", "DIRIGEABLE",
-
-    // Technologie
-    "ORDINATEUR", "TELEPHONE", "TABLETTE", "TELEVISION", "INTERNET", "SATELLITE", "ROBOT", "DRONE",
-    "CONSOLE", "CAMERA", "APPAREIL", "IMPRIMANTE", "CLAVIER", "SOURIS", "ECRAN", "ENCEINTE",
-
-    // Instruments de musique
-    "PIANO", "GUITARE", "VIOLON", "BATTERIE", "TROMPETTE", "SAXOPHONE", "FLUTE", "HARPE", "ACCORDEON",
-    "CLARINETTE", "XYLOPHONE", "TAMBOUR", "TRIANGLE", "CYMBALE", "HARMONICA", "BANJO", "UKULELE",
-
-    // Éléments et Phénomènes naturels
-    "SOLEIL", "LUNE", "ETOILE", "PLANETE", "COMETE", "GALAXIE", "NUAGE", "ORAGE", "ECLAIR", "TONNERRE",
-    "PLUIE", "NEIGE", "BROUILLARD", "VENT", "TEMPETE", "OURAGAN", "TORNADE", "AVALANCHE", "SEISME",
-
-    // Aliments et Boissons
-    "CHOCOLAT", "GATEAU", "BISCUIT", "BONBON", "CROISSANT", "BAGUETTE", "FROMAGE", "YAOURT", "GLACE",
-    "CREPE", "PIZZA", "HAMBURGER", "SPAGHETTI", "SUSHI", "SALADE", "SOUPE", "SANDWICH", "OMELETTE",
-
-    // Émotions et Sentiments
-    "AMOUR", "JOIE", "BONHEUR", "TRISTESSE", "COLERE", "SURPRISE", "PEUR", "COURAGE", "ESPOIR",
-    "PASSION", "JALOUSIE", "TENDRESSE", "AMITIE", "CONFIANCE", "PATIENCE", "SAGESSE", "SERENITE",
-
-    // Objets du quotidien
-    "LUNETTES", "MONTRE", "PARAPLUIE", "PORTEFEUILLE", "VALISE", "MIROIR", "BROSSE", "PEIGNE",
-    "SERVIETTE", "COUSSIN", "COUVERTURE", "RIDEAU", "TAPIS", "CADRE", "HORLOGE", "REVEIL",
-
-    // Lieux et Bâtiments
-    "CHATEAU", "PALAIS", "MUSEE", "THEATRE", "CINEMA", "BIBLIOTHEQUE", "HOPITAL", "ECOLE", "UNIVERSITE",
-    "RESTAURANT", "BOUTIQUE", "SUPERMARCHE", "PHARMACIE", "BOULANGERIE", "PATISSERIE", "LIBRAIRIE",
-
-    // Art et Culture
-    "PEINTURE", "SCULPTURE", "POESIE", "ROMAN", "THEATRE", "DANSE", "CINEMA", "MUSIQUE", "OPERA",
-    "COMEDIE", "BALLET", "CIRQUE", "FESTIVAL", "CONCERT", "EXPOSITION", "SPECTACLE",
-
-    // Mots abstraits et concepts
-    "LIBERTE", "JUSTICE", "PAIX", "VERITE", "BEAUTE", "TEMPS", "ESPACE", "HISTOIRE", "AVENIR",
-    "SCIENCE", "NATURE", "CULTURE", "PROGRES", "SUCCES", "VICTOIRE", "MIRACLE", "MYSTERE"
-];
+// Convertir tous les mots en majuscules
+const WORDS = words.map(word => word.toUpperCase());
 
 class HangmanGame {
     constructor() {
@@ -147,7 +76,7 @@ class HangmanGame {
         this.remainingAttempts = this.maxTries;
         this.gameOver = false;
         this.guessedLetters = new Set();
-        this.word = words[Math.floor(Math.random() * words.length)];
+        this.word = WORDS[Math.floor(Math.random() * WORDS.length)];
         this.updateDisplay();
         this.clearCanvas();
         this.drawGallows();
@@ -174,7 +103,7 @@ class HangmanGame {
     }
 
     startNewGame() {
-        this.word = words[Math.floor(Math.random() * words.length)];
+        this.word = WORDS[Math.floor(Math.random() * WORDS.length)];
         this.guessedLetters = new Set();
         this.remainingAttempts = this.maxTries;
         this.gameOver = false;
