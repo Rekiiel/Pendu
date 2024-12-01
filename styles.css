@@ -481,6 +481,7 @@ input:checked + .slider:before {
 
 @media (max-width: 768px) {
     .container {
+        width: 100%;
         padding: 0.5rem;
     }
 
@@ -488,20 +489,28 @@ input:checked + .slider:before {
         font-size: 1.5em;
     }
 
-    #word-display {
-        font-size: 1.8em;
-        letter-spacing: 8px;
+    #hangman {
+        width: 250px;
+        height: 250px;
     }
 
-    button {
-        padding: 8px 12px;
+    .keyboard button {
+        min-width: 28px;
+        height: 40px;
         font-size: 0.9em;
-        min-width: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    #hangman {
+        width: 200px;
+        height: 200px;
     }
 
-    #new-game-btn {
-        padding: 10px 20px;
-        font-size: 1em;
+    .keyboard button {
+        min-width: 25px;
+        height: 35px;
+        font-size: 0.8em;
     }
 }
 
