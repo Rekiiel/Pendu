@@ -84,50 +84,79 @@ class HangmanGame {
         this.newGameBtn = document.getElementById('new-game-btn');
         this.keyboard = document.querySelectorAll('.keyboard button');
         
-        // Initialisation des éléments de paramètres
+        this.difficulty = localStorage.getItem('difficulty') || 'normal';
+        this.maxTries = this.getMaxTriesByDifficulty();
+        
         this.initializeSettings();
         
-        this.maxAttempts = 6;
         this.setupEventListeners();
         this.startNewGame();
     }
 
-    initializeSettings() {
-        this.settingsBtn = document.getElementById('settings-btn');
-        this.settingsMenu = document.querySelector('.settings-menu');
-        this.darkModeToggle = document.getElementById('darkmode-toggle');
-
-        if (this.settingsBtn) {
-            this.settingsBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                this.settingsMenu.classList.toggle('hidden');
-            });
+    getMaxTriesByDifficulty() {
+        switch(this.difficulty) {
+            case 'easy': return 8;
+            case 'hard': return 4;
+            default: return 6; // normal
         }
+    }
 
-        document.addEventListener('click', (e) => {
-            if (this.settingsMenu && !this.settingsMenu.contains(e.target) && !this.settingsBtn.contains(e.target)) {
-                this.settingsMenu.classList.add('hidden');
-            }
+    initializeSettings() {
+        // Dark mode initialization
+        const darkModeToggle = document.getElementById('darkmode-toggle');
+        const isDarkMode = localStorage.getItem('darkMode') === 'true';
+        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
+        darkModeToggle.checked = isDarkMode;
+
+        darkModeToggle.addEventListener('change', () => {
+            document.documentElement.setAttribute('data-theme', darkModeToggle.checked ? 'dark' : 'light');
+            localStorage.setItem('darkMode', darkModeToggle.checked);
         });
 
-        if (this.darkModeToggle) {
-            this.darkModeToggle.addEventListener('change', () => {
-                if (this.darkModeToggle.checked) {
-                    document.documentElement.setAttribute('data-theme', 'dark');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.removeAttribute('data-theme');
-                    localStorage.setItem('theme', 'light');
-                }
-            });
+        // Difficulty initialization
+        const difficultySelect = document.getElementById('difficulty-select');
+        difficultySelect.value = this.difficulty;
+        
+        difficultySelect.addEventListener('change', () => {
+            this.difficulty = difficultySelect.value;
+            localStorage.setItem('difficulty', this.difficulty);
+            this.maxTries = this.getMaxTriesByDifficulty();
+            this.resetGame();
+        });
 
-            // Charger le thème sauvegardé
-            const savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') {
-                this.darkModeToggle.checked = true;
-                document.documentElement.setAttribute('data-theme', 'dark');
+        // Settings menu toggle
+        const settingsBtn = document.getElementById('settings-btn');
+        const settingsMenu = document.getElementById('settings-menu');
+
+        settingsBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Empêche la propagation du clic
+            const isHidden = settingsMenu.style.display === 'none';
+            settingsMenu.style.display = isHidden ? 'block' : 'none';
+        });
+
+        // Click outside to close settings
+        document.addEventListener('click', (e) => {
+            if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) {
+                settingsMenu.style.display = 'none';
             }
-        }
+        });
+    }
+
+    resetGame() {
+        // Reset game state with new difficulty
+        this.remainingAttempts = this.maxTries;
+        this.gameOver = false;
+        this.guessedLetters = new Set();
+        this.word = words[Math.floor(Math.random() * words.length)];
+        this.updateDisplay();
+        this.clearCanvas();
+        this.drawGallows();
+        
+        // Reset keyboard
+        this.keyboard.forEach(button => {
+            button.disabled = false;
+            button.classList.remove('correct', 'wrong');
+        });
     }
 
     setupEventListeners() {
@@ -147,7 +176,7 @@ class HangmanGame {
     startNewGame() {
         this.word = words[Math.floor(Math.random() * words.length)];
         this.guessedLetters = new Set();
-        this.remainingAttempts = this.maxAttempts;
+        this.remainingAttempts = this.maxTries;
         this.gameOver = false;
 
         this.keyboard.forEach(button => {
@@ -192,7 +221,7 @@ class HangmanGame {
         } else {
             if (button) button.classList.add('wrong');
             this.remainingAttempts--;
-            this.drawHangman(this.maxAttempts - this.remainingAttempts);
+            this.drawHangman(this.maxTries - this.remainingAttempts);
         }
 
         if (button) button.disabled = true;

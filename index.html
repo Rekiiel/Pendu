@@ -11,21 +11,29 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
 </head>
 <body>
-    <div class="container">
-        <div class="settings-container">
-            <button id="settings-btn" aria-label="Paramètres">
-                <i class="fas fa-cog"></i>
-            </button>
-            <div class="settings-menu hidden">
-                <div class="settings-item">
-                    <span>Mode Sombre</span>
-                    <label class="switch">
-                        <input type="checkbox" id="darkmode-toggle">
-                        <span class="slider round"></span>
-                    </label>
-                </div>
+    <div class="settings-container">
+        <button id="settings-btn" aria-label="Paramètres">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="settings-menu" id="settings-menu" style="display: none;">
+            <div class="settings-item">
+                <label class="switch-label">Mode Sombre</label>
+                <label class="switch">
+                    <input type="checkbox" id="darkmode-toggle">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+            <div class="settings-item">
+                <label class="switch-label">Difficulté</label>
+                <select id="difficulty-select" class="difficulty-select">
+                    <option value="easy">Facile</option>
+                    <option value="normal" selected>Normal</option>
+                    <option value="hard">Difficile</option>
+                </select>
             </div>
         </div>
+    </div>
+    <div class="container">
         <h1>LE PENDU</h1>
         <div class="game-container">
             <div class="hangman-drawing">
