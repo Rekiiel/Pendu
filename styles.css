@@ -642,6 +642,36 @@ input:checked + .slider:before {
     font-size: 0.9rem;
 }
 
+#mobile-stats-btn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: transparent;
+    border: none;
+    font-size: 1.5em;
+    color: var(--text-color);
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: all 0.3s ease;
+    opacity: 0.8;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card-bg);
+    box-shadow: 0 2px 10px var(--shadow-color);
+    z-index: 1000;
+}
+
+#mobile-stats-btn:hover {
+    opacity: 1;
+    transform: rotate(90deg);
+    box-shadow: 0 4px 15px var(--shadow-color);
+}
+
 @media (max-width: 768px) {
     .container {
         width: 100%;
@@ -656,6 +686,32 @@ input:checked + .slider:before {
         min-width: 28px;
         height: 40px;
         font-size: 0.9em;
+    }
+
+    #mobile-stats-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .stats-container {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: var(--card-bg);
+        padding: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 0 20px var(--shadow-color);
+        z-index: 1001;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .stats-container.show {
+        display: block;
     }
 }
 

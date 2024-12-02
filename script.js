@@ -86,61 +86,68 @@ class HangmanGame {
     }
 
     initializeSettings() {
-        // Dark mode initialization
+        // Configuration du thème sombre
         const darkModeToggle = document.getElementById('darkmode-toggle');
-        const isDarkMode = localStorage.getItem('darkMode') === 'true';
-        document.documentElement.setAttribute('data-theme', isDarkMode ? 'dark' : 'light');
-        darkModeToggle.checked = isDarkMode;
+        const darkMode = localStorage.getItem('darkMode') === 'true';
+        document.documentElement.setAttribute('data-theme', darkMode ? 'dark' : 'light');
+        darkModeToggle.checked = darkMode;
 
         darkModeToggle.addEventListener('change', () => {
-            document.documentElement.setAttribute('data-theme', darkModeToggle.checked ? 'dark' : 'light');
-            localStorage.setItem('darkMode', darkModeToggle.checked);
+            const isDark = darkModeToggle.checked;
+            document.documentElement.setAttribute('data-theme', isDark ? 'dark' : 'light');
+            localStorage.setItem('darkMode', isDark);
         });
 
-        // Difficulty initialization
-        const difficultySelect = document.getElementById('difficulty-select');
-        difficultySelect.value = this.difficulty;
-        
-        difficultySelect.addEventListener('change', () => {
-            this.difficulty = difficultySelect.value;
-            localStorage.setItem('difficulty', this.difficulty);
-            this.maxTries = this.getMaxTriesByDifficulty();
-            this.updateStatsDisplay(this.difficulty);
-            
-            // Mettre à jour l'attribut data-difficulty du body
-            document.body.setAttribute('data-difficulty', this.difficulty);
-            
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                if (btn.dataset.difficulty === this.difficulty) {
-                    btn.classList.add('active');
-                } else {
-                    btn.classList.remove('active');
-                }
-            });
-            this.startNewGame(); // Lancer une nouvelle partie immédiatement
-        });
-
-        // Settings menu toggle
+        // Configuration du menu des paramètres
         const settingsBtn = document.getElementById('settings-btn');
         const settingsMenu = document.getElementById('settings-menu');
+        const difficultySelect = document.getElementById('difficulty-select');
+        const resetStatsBtn = document.getElementById('reset-stats-btn');
+
+        // Initialiser la sélection de la difficulté
+        difficultySelect.value = this.difficulty;
 
         settingsBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Empêche la propagation du clic
-            const isHidden = settingsMenu.style.display === 'none';
-            settingsMenu.style.display = isHidden ? 'block' : 'none';
+            e.stopPropagation();
+            settingsMenu.style.display = settingsMenu.style.display === 'none' ? 'block' : 'none';
         });
 
-        // Click outside to close settings
         document.addEventListener('click', (e) => {
-            if (!settingsMenu.contains(e.target) && !settingsBtn.contains(e.target)) {
+            if (!settingsMenu.contains(e.target) && e.target !== settingsBtn) {
                 settingsMenu.style.display = 'none';
             }
         });
 
-        // Reset stats button initialization
-        const resetStatsBtn = document.getElementById('reset-stats-btn');
+        // Gestion des statistiques sur mobile
+        const mobileStatsBtn = document.getElementById('mobile-stats-btn');
+        const statsContainer = document.querySelector('.stats-container');
+
+        if (mobileStatsBtn && statsContainer) {
+            mobileStatsBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                statsContainer.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!statsContainer.contains(e.target) && e.target !== mobileStatsBtn) {
+                    statsContainer.classList.remove('show');
+                }
+            });
+        }
+
+        // Gestion du changement de difficulté
+        difficultySelect.addEventListener('change', () => {
+            this.difficulty = difficultySelect.value;
+            localStorage.setItem('difficulty', this.difficulty);
+            document.body.setAttribute('data-difficulty', this.difficulty);
+            this.maxTries = this.getMaxTriesByDifficulty();
+            this.startNewGame();
+            this.updateStats();
+        });
+
+        // Gestion de la réinitialisation des statistiques
         resetStatsBtn.addEventListener('click', () => {
-            if (confirm('Êtes-vous sûr de vouloir réinitialiser toutes les statistiques ? Cette action est irréversible.')) {
+            if (confirm('Êtes-vous sûr de vouloir réinitialiser toutes les statistiques ?')) {
                 this.resetAllStats();
             }
         });
