@@ -2,6 +2,8 @@
 
 Un jeu du pendu moderne et interactif avec une vaste collection de mots français. Testez votre vocabulaire et votre perspicacité dans ce jeu classique revisité !
 
+🎮 [Jouer au Pendu](https://rekiiel.github.io/Pendu/)
+
 ## Fonctionnalités
 
 - 🎨 Interface utilisateur moderne et responsive
