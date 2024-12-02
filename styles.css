@@ -723,6 +723,12 @@ input:checked + .slider:before {
     }
 }
 
+@media (min-width: 768px) {
+    #mobile-stats-btn {
+        display: none;
+    }
+}
+
 canvas {
     border: none;
     border-radius: 10px;
